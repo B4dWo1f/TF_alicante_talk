@@ -34,7 +34,7 @@ OUT_test = OUT_train
 try: model = keras.models.load_model('my_model.h5')
 except OSError:
    model = keras.Sequential([
-         keras.layers.Dense(2, activation=tf.nn.sigmoid, input_shape=(2,)),
+         keras.layers.Dense(3, activation=tf.nn.sigmoid, input_shape=(2,)),
          keras.layers.Dense(1, activation=None) ])
 
 
@@ -49,9 +49,9 @@ for i in range(IN_train.shape[0]):
    print(IN_train[i],'   ',OUT_train[i],'      %.2f'%(predicted[i]))
 
 # Train the model
-history = model.fit(IN_train, OUT_train, epochs=5000,
+history = model.fit(IN_train, OUT_train, epochs=2000,
                     validation_data = (IN_test,OUT_test),
-                    verbose=0)
+                    verbose=1)
 
 # plot learning curve
 err = history.history['loss']
