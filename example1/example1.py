@@ -42,7 +42,8 @@ IN_test, OUT_test = gen_data(100)
 #              sigmoid
 model = keras.Sequential([
       keras.layers.Dense(1, activation=None, input_shape=(1,)),
-      keras.layers.Dense(5, activation=tf.nn.sigmoid),
+      keras.layers.Dense(15, activation='tanh'),
+      keras.layers.Dense(5, activation='tanh'),
       keras.layers.Dense(1, activation=None) ])
 
 
@@ -58,11 +59,14 @@ history = model.fit(IN_train, OUT_train, epochs=1000,
 
 # plot learning curve
 err = history.history['loss']
+val_err = history.history['val_loss']
 acc = history.history['accuracy']
 fig, ax = plt.subplots()
 ax.plot(err,label='loss')
 ax.plot(acc,label='accuracy')
+ax.plot(val_err,label='val_loss')
 ax.set_title('Learning curve')
+ax.legend()
 
 
 # Prediction over the whole domain

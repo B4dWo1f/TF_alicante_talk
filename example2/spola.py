@@ -20,6 +20,7 @@ OUT = M[:,-n_out:]
 M = np.loadtxt('Spola.test')
 IN_test = M[:,:-n_out]
 OUT_test = M[:,-n_out:]
+inp_shape = IN_test.shape[1:]
 
 print('Read data samples:')
 print('%s for training  //  %s for testing'%(IN.shape[0],IN_test.shape[0]))
@@ -29,7 +30,7 @@ print('output dimension: %s'%(OUT.shape[1]))
 # Build the model
 print('Build the model')
 model = keras.Sequential([
-      keras.layers.Dense(2, activation=None, input_shape=(2,)),
+      keras.layers.Dense(2, activation=None, input_shape=inp_shape),
       keras.layers.Dense(5, activation=tf.nn.softmax),
       keras.layers.Dense(1, activation=tf.nn.relu) ])
 
